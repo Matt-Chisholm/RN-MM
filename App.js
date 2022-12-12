@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import ResultsScreen from "./src/screens/ResultsScreen";
+import SafetyFiveScreen from "./src/screens/SafetyFiveScreen";
+import SafetyFourScreen from "./src/screens/SafetyFourScreen";
+import SafetyOneScreen from "./src/screens/SafetyOneScreen";
+import SafetyThreeScreen from "./src/screens/SafetyThreeScreen";
+import SafetyTwoScreen from "./src/screens/SafetyTwoScreen";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const switchNavigator = createSwitchNavigator({
+  SafetyOne: SafetyOneScreen,
+  SafetyTwo: SafetyTwoScreen,
+  SafetyThree: SafetyThreeScreen,
+  SafetyFour: SafetyFourScreen,
+  SafetyFive: SafetyFiveScreen,
+  Results: ResultsScreen,
 });
+
+const App = createAppContainer(switchNavigator);
+
+export default () => {
+  return <App />;
+};
