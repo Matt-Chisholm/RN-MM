@@ -3,12 +3,13 @@ import React from "react";
 import { Feather } from "@expo/vector-icons";
 
 export default function QuestionForm({
-  navigation,
   header,
   subheader,
   question,
   nextScreen,
   prevScreen,
+  value,
+  onChangeText,
 }) {
   return (
     <View style={styles.container}>
@@ -18,7 +19,12 @@ export default function QuestionForm({
       <Text style={styles.header}>{header}</Text>
       <Text style={styles.subheader}>{subheader}</Text>
       <Text style={styles.question}>{question}</Text>
-      <TextInput style={styles.input} />
+      <TextInput
+        style={styles.input}
+        value={value}
+        onChangeText={onChangeText}
+        placeholder='Type here'
+      />
       <Button title='Next' onPress={nextScreen} />
     </View>
   );
