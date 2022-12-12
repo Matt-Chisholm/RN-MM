@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import QuestionForm from "../components/QuestionForm";
 

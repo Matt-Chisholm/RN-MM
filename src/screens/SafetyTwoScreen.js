@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import QuestionForm from "../components/QuestionForm";
 
-export default function SafetyTwoScreen() {
+export default function SafetyTwoScreen({ navigation }) {
   const [warningSigns, setWarningSigns] = useState("");
+  console.log(warningSigns);
   return (
     <LinearGradient colors={["#87dcff", "#f9f73e"]} style={styles.gradient}>
       <View style={styles.container}>
@@ -25,7 +26,7 @@ export default function SafetyTwoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    marginTop: 50,
     alignItems: "center",
   },
   gradient: {

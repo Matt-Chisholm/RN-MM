@@ -26,6 +26,7 @@ export default function QuestionForm({
         placeholder='Type here'
       />
       <Button title='Next' onPress={nextScreen} />
+      {prevScreen && <Button title='Back' onPress={prevScreen} />}
     </View>
   );
 }

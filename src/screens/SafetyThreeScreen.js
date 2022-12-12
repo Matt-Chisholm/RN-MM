@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function SafetyThreeScreen() {
+export default function SafetyThreeScreen({ navigation }) {
   return (
     <LinearGradient colors={["#87dcff", "#f9a53e"]} style={styles.gradient}>
       <View style={styles.container}>
