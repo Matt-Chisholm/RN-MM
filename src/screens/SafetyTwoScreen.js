@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import QuestionForm from "../components/QuestionForm";
+import { Context as SafetyContext } from "../context/SafetyContext";
 
 export default function SafetyTwoScreen({ navigation }) {
-  const [warningSigns, setWarningSigns] = useState("");
-  console.log(warningSigns);
+  const { state, addWarningSign } = useContext(SafetyContext);
+  console.log(state);
   return (
     <LinearGradient colors={["#87dcff", "#f9f73e"]} style={styles.gradient}>
       <View style={styles.container}>
@@ -15,8 +16,6 @@ export default function SafetyTwoScreen({ navigation }) {
           question='What are my warning signs that tell me Im starting to get overwhelmed?'
           nextScreen={() => navigation.navigate("SafetyThree")}
           prevScreen={() => navigation.navigate("SafetyOne")}
-          value={warningSigns}
-          onChangeText={setWarningSigns}
         />
       </View>
     </LinearGradient>

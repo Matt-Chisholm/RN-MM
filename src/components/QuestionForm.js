@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
 
 export default function QuestionForm({
@@ -9,8 +9,11 @@ export default function QuestionForm({
   nextScreen,
   prevScreen,
   value,
-  onChangeText,
+  onSubmit,
 }) {
+  const [text, setText] = useState("");
+  console.log(text);
+
   return (
     <View style={styles.container}>
       <View>
@@ -21,11 +24,17 @@ export default function QuestionForm({
       <Text style={styles.question}>{question}</Text>
       <TextInput
         style={styles.input}
-        value={value}
-        onChangeText={onChangeText}
+        value={text}
+        onChangeText={setText}
         placeholder='Type here'
       />
-      <Button title='Next' onPress={nextScreen} />
+      <Button
+        title='Next'
+        onPress={() => {
+          onSubmit(text);
+          nextScreen();
+        }}
+      />
       {prevScreen && <Button title='Back' onPress={prevScreen} />}
     </View>
   );

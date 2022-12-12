@@ -1,11 +1,13 @@
 import { View, StyleSheet } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import QuestionForm from "../components/QuestionForm";
+import { Context as SafetyContext } from "../context/SafetyContext";
 
 export default function SafetyOneScreen({ navigation }) {
-  const [triggers, setTriggers] = useState("");
-  console.log(triggers);
+  const { state, addTrigger } = useContext(SafetyContext);
+  console.log(state);
+
   return (
     <LinearGradient colors={["#87dcff", "#6043ad"]} style={styles.gradient}>
       <View style={styles.container}>
@@ -14,8 +16,8 @@ export default function SafetyOneScreen({ navigation }) {
           subheader='My Triggers'
           question='What are my top triggers or stresses?'
           nextScreen={() => navigation.navigate("SafetyTwo")}
-          value={triggers}
-          onChangeText={setTriggers}
+          value={state.triggers}
+          onSubmit={(trigger) => addTrigger(trigger)}
         />
       </View>
     </LinearGradient>
