@@ -8,6 +8,7 @@ export default function QuestionForm({
   question,
   nextScreen,
   prevScreen,
+  buttonTitle,
   value,
   onSubmit,
 }) {
@@ -29,7 +30,7 @@ export default function QuestionForm({
         placeholder='Type here'
       />
       <Button
-        title='Next'
+        title={buttonTitle}
         onPress={() => {
           onSubmit(text);
           nextScreen();

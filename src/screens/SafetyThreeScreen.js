@@ -19,6 +19,7 @@ export default function SafetyThreeScreen({ navigation }) {
           prevScreen={() => navigation.navigate("SafetyTwo")}
           value={state.strategies}
           onSubmit={(strategy) => addStrategy(strategy)}
+          buttonTitle='Next'
         />
       </View>
     </LinearGradient>

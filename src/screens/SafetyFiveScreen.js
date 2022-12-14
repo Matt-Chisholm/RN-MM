@@ -18,6 +18,7 @@ export default function SafetyFiveScreen({ navigation }) {
           prevScreen={() => navigation.navigate("SafetyFour")}
           value={state.codeword}
           onSubmit={(codeword) => addCodeword(codeword)}
+          buttonTitle='Save'
         />
       </View>
     </LinearGradient>

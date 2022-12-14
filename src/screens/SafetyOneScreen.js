@@ -18,6 +18,7 @@ export default function SafetyOneScreen({ navigation }) {
           nextScreen={() => navigation.navigate("SafetyTwo")}
           value={state.triggers}
           onSubmit={(trigger) => addTrigger(trigger)}
+          buttonTitle='Next'
         />
       </View>
     </LinearGradient>
