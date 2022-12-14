@@ -68,7 +68,7 @@ export default function QuestionForm({
       <Text style={styles.header}>{header}</Text>
       <ProgressBar
         progress={progress()}
-        color={MD3Colors.blue500}
+        color='#0074d9'
         style={styles.progressbar}
       />
       <Text style={styles.subheader}>{subheader}</Text>
@@ -108,6 +108,8 @@ const styles = StyleSheet.create({
     height: 10,
     marginTop: 20,
     marginBottom: 20,
+    borderRadius: 10,
+    boxShadow: "0 0 10px rgba(0,0,0,1)",
   },
   modalContainer: {
     flex: 1,
