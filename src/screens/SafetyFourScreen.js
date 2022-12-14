@@ -18,7 +18,8 @@ export default function SafetyFourScreen({ navigation }) {
           prevScreen={() => navigation.navigate("SafetyThree")}
           value={state.supports}
           onSubmit={(support) => addSupport(support)}
-          buttonTitle="Next"
+          buttonTitle='Next'
+          quitScreen={() => navigation.navigate("SafetyOne")}
         />
       </View>
     </LinearGradient>

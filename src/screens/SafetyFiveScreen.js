@@ -19,6 +19,7 @@ export default function SafetyFiveScreen({ navigation }) {
           value={state.codeword}
           onSubmit={(codeword) => addCodeword(codeword)}
           buttonTitle='Save'
+          quitScreen={() => navigation.navigate("SafetyOne")}
         />
       </View>
     </LinearGradient>

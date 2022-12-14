@@ -19,6 +19,7 @@ export default function SafetyTwoScreen({ navigation }) {
           value={state.warningSigns}
           onSubmit={(warningSign) => addWarning(warningSign)}
           buttonTitle='Next'
+          quitScreen={() => navigation.navigate("SafetyOne")}
         />
       </View>
     </LinearGradient>

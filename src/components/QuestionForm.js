@@ -18,6 +18,7 @@ export default function QuestionForm({
   prevScreen,
   buttonTitle,
   onSubmit,
+  quitScreen,
 }) {
   const [text, setText] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -42,7 +43,7 @@ export default function QuestionForm({
           <View style={styles.modalButtonView}>
             <Button
               title='Quit'
-              onPress={console.log("press")}
+              onPress={quitScreen}
               style={styles.modalButtons}
             />
             <Button title='Cancel' onPress={toggleModal} />
