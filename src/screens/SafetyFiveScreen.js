@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Context as SafetyContext } from "../context/SafetyContext";
 import QuestionForm from "../components/QuestionForm";
