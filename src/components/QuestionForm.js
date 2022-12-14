@@ -4,11 +4,13 @@ import {
   StyleSheet,
   TextInput,
   Button,
+  Pressable,
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import Modal from "react-native-modal";
+import { ProgressBar, MD3Colors } from "react-native-paper";
 
 export default function QuestionForm({
   header,
@@ -27,6 +29,20 @@ export default function QuestionForm({
     setIsModalVisible(!isModalVisible);
   };
 
+  const progress = () => {
+    if (header === "Let's start") {
+      return 0.2;
+    } else if (header === "2/5") {
+      return 0.4;
+    } else if (header === "3/5") {
+      return 0.6;
+    } else if (header === "4/5") {
+      return 0.8;
+    } else {
+      return 1;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={toggleModal}>
@@ -35,8 +51,7 @@ export default function QuestionForm({
       <Modal
         isVisible={isModalVisible}
         style={styles.modalContainer}
-        transparent={true}
-        animationIn>
+        transparent={true}>
         <View style={styles.modal}>
           <Text style={styles.modalHeader}>Quit now?</Text>
           <Text>If you leave now, you'll lose your progress.</Text>
@@ -51,6 +66,11 @@ export default function QuestionForm({
         </View>
       </Modal>
       <Text style={styles.header}>{header}</Text>
+      <ProgressBar
+        progress={progress()}
+        color={MD3Colors.blue500}
+        style={styles.progressbar}
+      />
       <Text style={styles.subheader}>{subheader}</Text>
       <Text style={styles.question}>{question}</Text>
       <TextInput
@@ -59,19 +79,36 @@ export default function QuestionForm({
         onChangeText={setText}
         placeholder='Type here'
       />
-      <Button
-        title={buttonTitle}
+      <Pressable
+        style={styles.button}
         onPress={() => {
           onSubmit(text);
           nextScreen();
-        }}
-      />
-      {prevScreen && <Button title='Back' onPress={prevScreen} />}
+        }}>
+        <Text style={styles.text}>
+          {buttonTitle}
+          <Feather name='arrow-right' size={24} color='white' />
+        </Text>
+      </Pressable>
+      {prevScreen && (
+        <Pressable style={styles.button} onPress={prevScreen}>
+          <Text style={styles.text}>
+            back
+            <Feather name='arrow-left' size={24} color='white' />
+          </Text>
+        </Pressable>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  progressbar: {
+    width: 300,
+    height: 10,
+    marginTop: 20,
+    marginBottom: 20,
+  },
   modalContainer: {
     flex: 1,
     alignItems: "center",
@@ -135,5 +172,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingRight: 100,
     marginTop: 20,
+  },
+  button: {
+    width: 250,
+    height: 40,
+    backgroundColor: "#0074d9",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+  },
+  text: {
+    fontSize: 14,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
   },
 });
