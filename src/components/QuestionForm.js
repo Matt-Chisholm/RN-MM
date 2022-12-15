@@ -144,7 +144,6 @@ const styles = StyleSheet.create({
     width: 100,
   },
   container: {
-    marginTop: 40,
     alignItems: "center",
   },
   input: {
