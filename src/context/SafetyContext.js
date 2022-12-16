@@ -12,6 +12,8 @@ const safetyReducer = (state, action) => {
       return { ...state, supports: action.payload };
     case "add_codeword":
       return { ...state, codewords: action.payload };
+    case "add_plan_name":
+      return { ...state, planName: action.payload };
     default:
       return state;
   }
@@ -47,8 +49,21 @@ const addCodeword = (dispatch) => {
   };
 };
 
+const addPlanName = (dispatch) => {
+  return (planName) => {
+    dispatch({ type: "add_plan_name", payload: planName });
+  };
+};
+
 export const { Provider, Context } = createDataContext(
   safetyReducer,
-  { addTrigger, addWarning, addStrategy, addSupport, addCodeword },
-  { triggers: "", warnings: "", strategies: "", supports: "", codewords: "" }
+  { addTrigger, addWarning, addStrategy, addSupport, addCodeword, addPlanName },
+  {
+    triggers: "",
+    warnings: "",
+    strategies: "",
+    supports: "",
+    codewords: "",
+    planName: "",
+  }
 );

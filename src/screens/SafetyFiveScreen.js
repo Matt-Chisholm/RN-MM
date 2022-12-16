@@ -6,10 +6,11 @@ import QuestionForm from "../components/QuestionForm";
 import Modal from "react-native-modal";
 
 export default function SafetyFiveScreen({ navigation }) {
-  const { state, addCodeword } = useContext(SafetyContext);
+  const { state, addCodeword, addPlanName } = useContext(SafetyContext);
   console.log(state);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [name, setName] = useState("");
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
@@ -34,13 +35,21 @@ export default function SafetyFiveScreen({ navigation }) {
           transparent={true}>
           <View style={styles.modal}>
             <Text style={styles.modalHeader}>Safety Plan</Text>
-            <Text style={styles.modalText}>Name </Text>
-            <TextInput style={styles.modalInput} />
+            <Text style={styles.modalText}>Name</Text>
+            <TextInput
+              style={styles.modalInput}
+              onChangeText={(text) => setName(text)}
+              value={name}
+            />
             <View style={styles.modalButtonView}>
               <Button
                 color={"green"}
                 title='Save'
-                onPress={() => navigation.navigate("Results")}
+                onPress={() => {
+                  addPlanName(name);
+                  toggleModal();
+                  navigation.navigate("SafetyOne");
+                }}
                 style={styles.modalButton}
               />
               <Button
