@@ -48,7 +48,7 @@ export default function SafetyFiveScreen({ navigation }) {
                 onPress={() => {
                   addPlanName(name);
                   toggleModal();
-                  navigation.navigate("SafetyOne");
+                  navigation.navigate("Results");
                 }}
                 style={styles.modalButton}
               />
