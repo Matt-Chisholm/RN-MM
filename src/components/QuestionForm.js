@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
+import { ProgressBar } from "react-native-paper";
 import Modal from "react-native-modal";
-import { ProgressBar, MD3Colors } from "react-native-paper";
 
 export default function QuestionForm({
   header,
@@ -58,6 +58,7 @@ export default function QuestionForm({
           <View style={styles.modalButtonView}>
             <Button
               title='Quit'
+              color={"red"}
               onPress={quitScreen}
               style={styles.modalButtons}
             />
@@ -103,14 +104,6 @@ export default function QuestionForm({
 }
 
 const styles = StyleSheet.create({
-  progressbar: {
-    width: 300,
-    height: 10,
-    marginTop: 20,
-    marginBottom: 20,
-    borderRadius: 10,
-    boxShadow: "0 0 10px rgba(0,0,0,1)",
-  },
   modalContainer: {
     flex: 1,
     alignItems: "center",
@@ -142,6 +135,14 @@ const styles = StyleSheet.create({
   },
   modalButtons: {
     width: 100,
+  },
+  progressbar: {
+    width: 300,
+    height: 10,
+    marginTop: 20,
+    marginBottom: 20,
+    borderRadius: 10,
+    boxShadow: "0 0 10px rgba(0,0,0,1)",
   },
   container: {
     flex: 1,
