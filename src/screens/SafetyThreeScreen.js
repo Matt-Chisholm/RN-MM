@@ -5,7 +5,7 @@ import { Context as SafetyContext } from "../context/SafetyContext";
 import QuestionForm from "../components/QuestionForm";
 
 export default function SafetyThreeScreen({ navigation }) {
-  const { state, addStrategy } = useContext(SafetyContext);
+  const { state, setStrategies } = useContext(SafetyContext);
   console.log(state);
 
   return (
@@ -18,7 +18,7 @@ export default function SafetyThreeScreen({ navigation }) {
           nextScreen={() => navigation.navigate("SafetyFour")}
           prevScreen={() => navigation.navigate("SafetyTwo")}
           value={state.strategies}
-          onSubmit={(strategy) => addStrategy(strategy)}
+          onSubmit={(strategy) => setStrategies(strategy)}
           buttonTitle='next'
           quitScreen={() => navigation.navigate("SafetyOne")}
         />

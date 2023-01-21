@@ -5,7 +5,7 @@ import QuestionForm from "../components/QuestionForm";
 import { Context as SafetyContext } from "../context/SafetyContext";
 
 export default function SafetyTwoScreen({ navigation }) {
-  const { state, addWarning } = useContext(SafetyContext);
+  const { state, setWarnings } = useContext(SafetyContext);
   console.log(state);
   return (
     <LinearGradient colors={["#87dcff", "#f9f73e"]} style={styles.gradient}>
@@ -17,7 +17,7 @@ export default function SafetyTwoScreen({ navigation }) {
           nextScreen={() => navigation.navigate("SafetyThree")}
           prevScreen={() => navigation.navigate("SafetyOne")}
           value={state.warningSigns}
-          onSubmit={(warningSign) => addWarning(warningSign)}
+          onSubmit={(warningSign) => setWarnings(warningSign)}
           buttonTitle='next'
           quitScreen={() => navigation.navigate("SafetyOne")}
         />

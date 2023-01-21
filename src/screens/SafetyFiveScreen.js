@@ -6,7 +6,7 @@ import QuestionForm from "../components/QuestionForm";
 import Modal from "react-native-modal";
 
 export default function SafetyFiveScreen({ navigation }) {
-  const { state, addCodeword, addPlanName } = useContext(SafetyContext);
+  const { state, setCodewords, setPlanName } = useContext(SafetyContext);
   console.log(state);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -15,6 +15,7 @@ export default function SafetyFiveScreen({ navigation }) {
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
+
   return (
     <LinearGradient colors={["#87dcff", "#6043ad"]} style={styles.gradient}>
       <View style={styles.container}>
@@ -25,7 +26,7 @@ export default function SafetyFiveScreen({ navigation }) {
           nextScreen={() => toggleModal()}
           prevScreen={() => navigation.navigate("SafetyFour")}
           value={state.codeword}
-          onSubmit={(codeword) => addCodeword(codeword)}
+          onSubmit={(codeword) => setCodewords(codeword)}
           buttonTitle='save'
           quitScreen={() => navigation.navigate("SafetyOne")}
         />
@@ -46,7 +47,7 @@ export default function SafetyFiveScreen({ navigation }) {
                 color={"green"}
                 title='Save'
                 onPress={() => {
-                  addPlanName(name);
+                  setPlanName(name);
                   toggleModal();
                   navigation.navigate("Results");
                 }}

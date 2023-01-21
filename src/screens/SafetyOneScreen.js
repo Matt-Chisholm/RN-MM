@@ -5,7 +5,7 @@ import QuestionForm from "../components/QuestionForm";
 import { Context as SafetyContext } from "../context/SafetyContext";
 
 export default function SafetyOneScreen({ navigation }) {
-  const { state, addTrigger } = useContext(SafetyContext);
+  const { state, setTriggers } = useContext(SafetyContext);
   console.log(state);
 
   return (
@@ -17,7 +17,7 @@ export default function SafetyOneScreen({ navigation }) {
           question='What are my top triggers or stresses?'
           nextScreen={() => navigation.navigate("SafetyTwo")}
           value={state.triggers}
-          onSubmit={(trigger) => addTrigger(trigger)}
+          onSubmit={(trigger) => setTriggers(trigger)}
           buttonTitle='next'
           quitScreen={() => navigation.navigate("SafetyOne")}
         />
