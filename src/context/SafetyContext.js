@@ -2,62 +2,37 @@ import createDataContext from "./createDataContext";
 
 const safetyReducer = (state, action) => {
   switch (action.type) {
-    case "add_trigger":
+    case "SET_TRIGGERS":
       return { ...state, triggers: action.payload };
-    case "add_warning":
+    case "SET_WARNINGS":
       return { ...state, warnings: action.payload };
-    case "add_strategy":
+    case "SET_STRATEGIES":
       return { ...state, strategies: action.payload };
-    case "add_support":
+    case "SET_SUPPORTS":
       return { ...state, supports: action.payload };
-    case "add_codeword":
+    case "SET_CODEWORDS":
       return { ...state, codewords: action.payload };
-    case "add_plan_name":
+    case "SET_PLAN_NAME":
       return { ...state, planName: action.payload };
     default:
       return state;
   }
 };
 
-const addTrigger = (dispatch) => {
-  return (triggers) => {
-    dispatch({ type: "add_trigger", payload: triggers });
-  };
-};
-
-const addWarning = (dispatch) => {
-  return (warnings) => {
-    dispatch({ type: "add_warning", payload: warnings });
-  };
-};
-
-const addStrategy = (dispatch) => {
-  return (strategies) => {
-    dispatch({ type: "add_strategy", payload: strategies });
-  };
-};
-
-const addSupport = (dispatch) => {
-  return (supports) => {
-    dispatch({ type: "add_support", payload: supports });
-  };
-};
-
-const addCodeword = (dispatch) => {
-  return (codewords) => {
-    dispatch({ type: "add_codeword", payload: codewords });
-  };
-};
-
-const addPlanName = (dispatch) => {
-  return (planName) => {
-    dispatch({ type: "add_plan_name", payload: planName });
-  };
+const createAction = (type) => (dispatch) => (payload) => {
+  dispatch({ type, payload });
 };
 
 export const { Provider, Context } = createDataContext(
   safetyReducer,
-  { addTrigger, addWarning, addStrategy, addSupport, addCodeword, addPlanName },
+  {
+    setTriggers: createAction("SET_TRIGGERS"),
+    setWarnings: createAction("SET_WARNINGS"),
+    setStrategies: createAction("SET_STRATEGIES"),
+    setSupports: createAction("SET_SUPPORTS"),
+    setCodewords: createAction("SET_CODEWORDS"),
+    setPlanName: createAction("SET_PLAN_NAME"),
+  },
   {
     triggers: "",
     warnings: "",
