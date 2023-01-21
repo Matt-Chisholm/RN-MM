@@ -32,6 +32,7 @@ export default function SafetyFiveScreen({ navigation }) {
         </KeyboardAvoidingView>
         <SafetyModal
           isVisible={isModalVisible}
+          header='Safety Plan'
           onClose={toggleModal}
           onSave={(name) => {
             setPlanName(name);

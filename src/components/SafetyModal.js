@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 
-const SafetyModal = ({ isVisible, onClose, onSave }) => {
+const SafetyModal = ({ isVisible, onClose, onSave, header }) => {
   const [name, setName] = useState("");
 
   return (
@@ -19,20 +19,29 @@ const SafetyModal = ({ isVisible, onClose, onSave }) => {
       style={styles.modalContainer}
       transparent={true}>
       <View style={styles.modal}>
-        <Text style={styles.modalHeader}>Safety Plan</Text>
-        <View style={styles.nameView}>
-          <Text style={styles.modalText}>Name</Text>
-        </View>
-        <TextInput
-          style={styles.modalInput}
-          onChangeText={(text) => setName(text)}
-          value={name}
-        />
+        <Text style={styles.modalHeader}>{header}</Text>
+        {header === "Safety Plan" ? (
+          <>
+            <View style={styles.nameView}>
+              <Text style={styles.modalText}>Name</Text>
+            </View>
+            <TextInput
+              style={styles.modalInput}
+              onChangeText={(text) => setName(text)}
+              value={name}
+            />
+          </>
+        ) : null}
         <View style={styles.modalButtonView}>
-          <Pressable style={styles.saveButton}>
+          <Pressable
+            style={styles.saveButton}
+            onPress={() => {
+              onSave(name);
+              onClose();
+            }}>
             <Text style={styles.saveButtonText}>Save</Text>
           </Pressable>
-          <Pressable style={styles.cancelButton}>
+          <Pressable style={styles.cancelButton} onPress={() => onClose()}>
             <Text style={styles.cancelButtonText}>Cancel</Text>
           </Pressable>
         </View>
