@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import { ProgressBar } from "react-native-paper";
-import Modal from "react-native-modal";
+import SafetyModal from "./SafetyModal";
 
 export default function QuestionForm({
   header,
@@ -49,24 +49,12 @@ export default function QuestionForm({
       <TouchableOpacity onPress={toggleModal}>
         <Feather name='x' size={40} color='black' style={styles.icon} />
       </TouchableOpacity>
-      <Modal
+      <SafetyModal
         isVisible={isModalVisible}
-        style={styles.modalContainer}
-        transparent={true}>
-        <View style={styles.modal}>
-          <Text style={styles.modalHeader}>Quit now?</Text>
-          <Text>If you leave now, you'll lose your progress.</Text>
-          <View style={styles.modalButtonView}>
-            <Button
-              title='Quit'
-              color={"red"}
-              onPress={quitScreen}
-              style={styles.modalButtons}
-            />
-            <Button title='Cancel' onPress={toggleModal} />
-          </View>
-        </View>
-      </Modal>
+        header='Quit now?'
+        onClose={toggleModal}
+        onSave={quitScreen}
+      />
       <Text style={styles.header}>{header}</Text>
       <ProgressBar
         progress={progress()}

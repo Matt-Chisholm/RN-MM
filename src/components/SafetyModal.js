@@ -32,14 +32,28 @@ const SafetyModal = ({ isVisible, onClose, onSave, header }) => {
             />
           </>
         ) : null}
+        {header === "Quit now?" ? (
+          <Text style={styles.subHeader}>
+            If you leave now, you'll lose your progress
+          </Text>
+        ) : null}
         <View style={styles.modalButtonView}>
           <Pressable
-            style={styles.saveButton}
+            style={
+              header === "Quit now?" ? styles.quitButton : styles.saveButton
+            }
             onPress={() => {
               onSave(name);
               onClose();
             }}>
-            <Text style={styles.saveButtonText}>Save</Text>
+            <Text
+              style={
+                header === "Quit now?"
+                  ? styles.quitButtonText
+                  : styles.saveButtonText
+              }>
+              {header === "Quit now?" && "Quit"}
+            </Text>
           </Pressable>
           <Pressable style={styles.cancelButton} onPress={() => onClose()}>
             <Text style={styles.cancelButtonText}>Cancel</Text>
@@ -62,6 +76,10 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
     width: "80%",
+    marginBottom: 20,
+  },
+  subHeader: {
+    fontSize: 16,
     marginBottom: 20,
   },
   nameView: {
@@ -125,6 +143,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "grey",
     textAlign: "center",
+  },
+  quitButton: {
+    width: 100,
+    height: 30,
+    borderRightColor: "lightblue",
+    borderRightWidth: 1,
+  },
+  quitButtonText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "red",
+    textAlign: "center",
+    paddingRight: 20,
   },
 });
 
