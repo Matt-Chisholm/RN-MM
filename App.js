@@ -6,9 +6,11 @@ import SafetyFourScreen from "./src/screens/SafetyFourScreen";
 import SafetyOneScreen from "./src/screens/SafetyOneScreen";
 import SafetyThreeScreen from "./src/screens/SafetyThreeScreen";
 import SafetyTwoScreen from "./src/screens/SafetyTwoScreen";
+import SafetyHomeScreen from "./src/screens/SafetyHomeScreen";
 import { Provider as SafetyProvider } from "./src/context/SafetyContext";
 
 const switchNavigator = createSwitchNavigator({
+  SafetyHome: SafetyHomeScreen,
   SafetyOne: SafetyOneScreen,
   SafetyTwo: SafetyTwoScreen,
   SafetyThree: SafetyThreeScreen,
