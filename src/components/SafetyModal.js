@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Pressable,
+  KeyboardAvoidingView,
+} from "react-native";
 import Modal from "react-native-modal";
 
 const SafetyModal = ({ isVisible, onClose, onSave }) => {
@@ -12,23 +20,21 @@ const SafetyModal = ({ isVisible, onClose, onSave }) => {
       transparent={true}>
       <View style={styles.modal}>
         <Text style={styles.modalHeader}>Safety Plan</Text>
-        <Text style={styles.modalText}>Name</Text>
+        <View style={styles.nameView}>
+          <Text style={styles.modalText}>Name</Text>
+        </View>
         <TextInput
           style={styles.modalInput}
           onChangeText={(text) => setName(text)}
           value={name}
         />
         <View style={styles.modalButtonView}>
-          <Button
-            color={"green"}
-            title='Save'
-            onPress={() => {
-              onSave(name);
-              onClose();
-            }}
-            style={styles.modalButton}
-          />
-          <Button color={"grey"} title='Cancel' onPress={onClose} />
+          <Pressable style={styles.saveButton}>
+            <Text style={styles.saveButtonText}>Save</Text>
+          </Pressable>
+          <Pressable style={styles.cancelButton}>
+            <Text style={styles.cancelButtonText}>Cancel</Text>
+          </Pressable>
         </View>
       </View>
     </Modal>
@@ -40,6 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 200,
   },
   modalInput: {
     height: 40,
@@ -47,6 +54,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: "80%",
     marginBottom: 20,
+  },
+  nameView: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "left",
+    width: "80%",
+    marginBottom: 5,
   },
   modal: {
     alignItems: "center",
@@ -60,20 +74,48 @@ const styles = StyleSheet.create({
     marginTop: 100,
     boxShadow: "0 0 10px rgba(0,0,0,0.5)",
   },
+  modalText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
   modalHeader: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 20,
+    marginRight: 100,
   },
   modalButtonView: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
     width: "100%",
-    marginTop: 20,
+    borderTopColor: "lightblue",
+    borderTopWidth: 1,
+    paddingTop: 20,
   },
-  modalButtons: {
+  saveButton: {
     width: 100,
+    height: 30,
+    borderRightColor: "lightblue",
+    borderRightWidth: 1,
+  },
+  saveButtonText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "green",
+    textAlign: "center",
+    paddingRight: 20,
+  },
+  cancelButton: {
+    width: 100,
+    height: 30,
+  },
+  cancelButtonText: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "grey",
+    textAlign: "center",
   },
 });
 

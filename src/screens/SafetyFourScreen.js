@@ -10,7 +10,7 @@ export default function SafetyFourScreen({ navigation }) {
   return (
     <LinearGradient colors={["#87dcff", "#3ef9c5"]} style={styles.gradient}>
       <View style={styles.container}>
-        <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={-140}>
+        <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={-200}>
           <QuestionForm
             header='4/5'
             subheader='My Supports'
