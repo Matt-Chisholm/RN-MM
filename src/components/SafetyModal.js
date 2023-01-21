@@ -1,16 +1,8 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Button,
-  Pressable,
-  KeyboardAvoidingView,
-} from "react-native";
+import React, { useState, useCallback } from "react";
+import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 import Modal from "react-native-modal";
 
-const SafetyModal = ({ isVisible, onClose, onSave, header }) => {
+const SafetyModal = ({ isVisible, onClose, onSave, onCancel, header }) => {
   const [name, setName] = useState("");
 
   return (
@@ -43,8 +35,7 @@ const SafetyModal = ({ isVisible, onClose, onSave, header }) => {
               header === "Quit now?" ? styles.quitButton : styles.saveButton
             }
             onPress={() => {
-              onSave(name);
-              onClose();
+              header === "Quit now?" ? onClose() : onSave(name);
             }}>
             <Text
               style={
@@ -52,10 +43,10 @@ const SafetyModal = ({ isVisible, onClose, onSave, header }) => {
                   ? styles.quitButtonText
                   : styles.saveButtonText
               }>
-              {header === "Quit now?" && "Quit"}
+              {(header === "Quit now?" && "Quit") || "Save"}
             </Text>
           </Pressable>
-          <Pressable style={styles.cancelButton} onPress={() => onClose()}>
+          <Pressable style={styles.cancelButton} onPress={() => onCancel()}>
             <Text style={styles.cancelButtonText}>Cancel</Text>
           </Pressable>
         </View>

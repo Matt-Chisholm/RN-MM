@@ -52,7 +52,8 @@ export default function QuestionForm({
       <SafetyModal
         isVisible={isModalVisible}
         header='Quit now?'
-        onClose={toggleModal}
+        onClose={quitScreen}
+        onCancel={toggleModal}
         onSave={quitScreen}
       />
       <Text style={styles.header}>{header}</Text>
