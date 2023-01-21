@@ -1,16 +1,14 @@
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import React, { useContext, useState } from "react";
+import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Context as SafetyContext } from "../context/SafetyContext";
 import QuestionForm from "../components/QuestionForm";
-import Modal from "react-native-modal";
+import SafetyModal from "../components/SafetyModal";
 
 export default function SafetyFiveScreen({ navigation }) {
   const { state, setCodewords, setPlanName } = useContext(SafetyContext);
-  console.log(state);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [name, setName] = useState("");
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
@@ -30,37 +28,14 @@ export default function SafetyFiveScreen({ navigation }) {
           buttonTitle='save'
           quitScreen={() => navigation.navigate("SafetyOne")}
         />
-        <Modal
+        <SafetyModal
           isVisible={isModalVisible}
-          style={styles.modalContainer}
-          transparent={true}>
-          <View style={styles.modal}>
-            <Text style={styles.modalHeader}>Safety Plan</Text>
-            <Text style={styles.modalText}>Name</Text>
-            <TextInput
-              style={styles.modalInput}
-              onChangeText={(text) => setName(text)}
-              value={name}
-            />
-            <View style={styles.modalButtonView}>
-              <Button
-                color={"green"}
-                title='Save'
-                onPress={() => {
-                  setPlanName(name);
-                  toggleModal();
-                  navigation.navigate("Results");
-                }}
-                style={styles.modalButton}
-              />
-              <Button
-                color={"grey"}
-                title='Cancel'
-                onPress={() => toggleModal()}
-              />
-            </View>
-          </View>
-        </Modal>
+          onClose={toggleModal}
+          onSave={(name) => {
+            setPlanName(name);
+            navigation.navigate("Results");
+          }}
+        />
       </View>
     </LinearGradient>
   );

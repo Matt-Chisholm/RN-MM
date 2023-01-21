@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, KeyboardAvoidingView } from "react-native";
 import React, { useContext } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Context as SafetyContext } from "../context/SafetyContext";
@@ -10,17 +10,19 @@ export default function SafetyFourScreen({ navigation }) {
   return (
     <LinearGradient colors={["#87dcff", "#3ef9c5"]} style={styles.gradient}>
       <View style={styles.container}>
-        <QuestionForm
-          header='4/5'
-          subheader='My Supports'
-          question='Who can I reach out to when I need help?'
-          nextScreen={() => navigation.navigate("SafetyFive")}
-          prevScreen={() => navigation.navigate("SafetyThree")}
-          value={state.supports}
-          onSubmit={(support) => setSupports(support)}
-          buttonTitle='next'
-          quitScreen={() => navigation.navigate("SafetyOne")}
-        />
+        <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={-140}>
+          <QuestionForm
+            header='4/5'
+            subheader='My Supports'
+            question='Who can I reach out to when I need help?'
+            nextScreen={() => navigation.navigate("SafetyFive")}
+            prevScreen={() => navigation.navigate("SafetyThree")}
+            value={state.supports}
+            onSubmit={(support) => setSupports(support)}
+            buttonTitle='next'
+            quitScreen={() => navigation.navigate("SafetyOne")}
+          />
+        </KeyboardAvoidingView>
       </View>
     </LinearGradient>
   );

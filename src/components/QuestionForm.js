@@ -6,6 +6,7 @@ import {
   Button,
   Pressable,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
